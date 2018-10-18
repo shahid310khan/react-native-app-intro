@@ -1,15 +1,36 @@
 {
-  "name": "react-native-app-intro",
-  "version": "1.1.5",
-  "description": "react-native-app-intro is a react native plugin implementing a parallax effect welcome page using base on react-native-swiper , similar to the one found in Google's app like Sheet, Drive, Docs...",
-  "main": "AppIntro.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
+  "_from": "git+https://github.com/SystangoTechnologiesInternal/strat-prd-react-native-app-intro.git",
+  "_id": "react-native-app-intro@1.1.5",
+  "_inBundle": false,
+  "_location": "/react-native-app-intro",
+  "_phantomChildren": {},
+  "_requested": {
     "type": "git",
-    "url": "git+https://github.com/fuyaode/react-native-app-intro.git"
+    "raw": "react-native-app-intro@git+https://github.com/SystangoTechnologiesInternal/strat-prd-react-native-app-intro.git",
+    "name": "react-native-app-intro",
+    "escapedName": "react-native-app-intro",
+    "rawSpec": "git+https://github.com/SystangoTechnologiesInternal/strat-prd-react-native-app-intro.git",
+    "saveSpec": "git+https://github.com/SystangoTechnologiesInternal/strat-prd-react-native-app-intro.git",
+    "fetchSpec": "https://github.com/SystangoTechnologiesInternal/strat-prd-react-native-app-intro.git",
+    "gitCommittish": null
   },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git+https://github.com/SystangoTechnologiesInternal/strat-prd-react-native-app-intro.git#43bdaaed74ad143ff9fd7c359f7b116bbbac82e9",
+  "_spec": "react-native-app-intro@git+https://github.com/SystangoTechnologiesInternal/strat-prd-react-native-app-intro.git",
+  "_where": "/Users/stplmacmini15/Documents/Projects/Predictor/PredictorApp",
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/fuyaode/react-native-app-intro/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "assign-deep": "^0.4.5"
+  },
+  "deprecated": false,
+  "description": "react-native-app-intro is a react native plugin implementing a parallax effect welcome page using base on react-native-swiper , similar to the one found in Google's app like Sheet, Drive, Docs...",
+  "homepage": "https://github.com/fuyaode/react-native-app-intro#readme",
   "keywords": [
     "swiper",
     "ProductTour",
@@ -20,14 +41,15 @@
     "react-component",
     "react-native"
   ],
-  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/fuyaode/react-native-app-intro/issues"
+  "main": "AppIntro.js",
+  "name": "react-native-app-intro",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fuyaode/react-native-app-intro.git"
   },
-  "homepage": "https://github.com/fuyaode/react-native-app-intro#readme",
-  "dependencies": {
-    "assign-deep": "^0.4.5",
-    "react-native-swiper": "git+https://github.com/FuYaoDe/react-native-swiper.git"
-  }
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.1.5"
 }

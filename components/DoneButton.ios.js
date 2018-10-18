@@ -13,7 +13,7 @@ export const DoneButton = ({
   doneFadeOpacity, skipFadeOpacity, nextOpacity
 }) => {
   return (
-    <View style={styles.btnContainer}>
+    <View style={[styles.btnContainer, {position:'absolute', right:0}]}>
       <Animated.View style={[styles.full, { height: 0 }, {
         opacity: doneFadeOpacity,
         transform: [{

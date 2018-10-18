@@ -1,5 +1,8 @@
 import assign from 'assign-deep';
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+var _ = require('lodash');
+
 import {
   StatusBar,
   StyleSheet,
@@ -109,7 +112,7 @@ export default class AppIntro extends Component {
     super(props);
 
     this.styles = StyleSheet.create(assign({}, defaulStyles, props.customStyles));
-
+    this.onNextBtnClick = _.debounce(this.onNextBtnClick,500);
     this.state = {
       skipFadeOpacity: new Animated.Value(1),
       doneFadeOpacity: new Animated.Value(0),
@@ -119,22 +122,25 @@ export default class AppIntro extends Component {
   }
 
   onNextBtnClick = (context) => {
-    if (context.state.isScrolling || context.state.total < 2) return;
-    const state = context.state;
-    const diff = (context.props.loop ? 1 : 0) + 1 + context.state.index;
-    let x = 0;
-    if (state.dir === 'x') x = diff * state.width;
-    if (Platform.OS === 'ios') {
-      context.refs.scrollView.scrollTo({ y: 0, x });
-    } else {
-      context.refs.scrollView.setPage(diff);
-      context.onScrollEnd({
-        nativeEvent: {
-          position: diff,
-        },
-      });
-    }
-    this.props.onNextBtnClick(context.state.index);
+
+    // context = this.Swiper;
+    // if (context.state.isScrolling || context.state.total < 2) return;
+    // const state = context.state;
+    // const diff = (context.props.loop ? 1 : 0) + 1 + context.state.index;
+    // let x = 0;
+    // if (state.dir === 'x') x = diff * state.width;
+    // if (Platform.OS === 'ios') {
+    //   context.scrollView.scrollTo({ y: 0, x });
+    // } else {
+    //   context.scrollView.scrollTo({ y: 0, x });
+    //   context.onScrollEnd({
+    //     nativeEvent: {
+    //       position: diff,
+    //     },
+    //   });     
+    // }
+
+    // this.props.onNextBtnClick(context.state.index);
   }
 
   setDoneBtnOpacity = (value) => {
@@ -261,6 +267,9 @@ export default class AppIntro extends Component {
   }
 
   renderChild = (children, pageIndex, index) => {
+
+                  //console.log('index=========', index, children)
+
     const level = children.props.level || 0;
     const { transform } = this.getTransform(pageIndex, 10, level);
     const root = children.props.children;
@@ -309,27 +318,27 @@ export default class AppIntro extends Component {
     if (pageArray.length > 0) {
       pages = pageArray.map((page, i) => this.renderBasicSlidePage(i, page));
     } else {
-      if (Platform.OS === 'ios') {
+      //if (Platform.OS === 'ios') {
         pages = childrens.map((children, i) => this.renderChild(children, i, i));
-      } else {
-        androidPages = childrens.map((children, i) => {
-          const { transform } = this.getTransform(i, -windowsWidth / 3 * 2, 1);
-          pages.push(<View key={i} />);
-          return (
-            <Animated.View key={i} style={[{
-              position: 'absolute',
-              height: windowsHeight,
-              width: windowsWidth,
-              top: 0,
-            }, {
-              ...transform[0],
-            }]}
-            >
-              {this.renderChild(children, i, i)}
-            </Animated.View>
-          );
-        });
-      }
+      // } else {
+      //   androidPages = childrens.map((children, i) => {
+      //     const { transform } = this.getTransform(i, -windowsWidth / 3 * 2, 1);
+      //     pages.push(<View key={i} />);
+      //     return (
+      //       <Animated.View key={i} style={[{
+      //         position: 'absolute',
+      //         height: windowsHeight,
+      //         width: windowsWidth,
+      //         top: 0,
+      //       }, {
+      //         ...transform[0],
+      //       }]}
+      //       >
+      //         {this.renderChild(children, i, i)}
+      //       </Animated.View>
+      //     );
+      //   });
+      // }
     }
 
     if (this.isToTintStatusBar()) {
@@ -337,9 +346,10 @@ export default class AppIntro extends Component {
     }
 
     return (
-      <View>
+      <View style={{flex:1}}>
         {androidPages}
         <Swiper
+          ref={this.refSwiper}
           loop={false}
           index={this.props.defaultIndex}
           renderPagination={this.renderPagination}
@@ -350,14 +360,15 @@ export default class AppIntro extends Component {
 
             this.props.onSlideChange(state.index, state.total);
           }}
-          onScroll={Animated.event(
-            [{ x: this.state.parallax }]
-          )}
         >
           {pages}
         </Swiper>
       </View>
     );
+  }
+
+  refSwiper = view => {
+    this.Swiper = view;
   }
 }
 
@@ -402,7 +413,7 @@ AppIntro.defaultProps = {
   onNextBtnClick: () => {},
   doneBtnLabel: 'Done',
   skipBtnLabel: 'Skip',
-  nextBtnLabel: '›',
+  nextBtnLabel: '',
   defaultIndex: 0,
   showSkipButton: true,
   showDoneButton: true,

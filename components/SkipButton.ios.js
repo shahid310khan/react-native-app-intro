@@ -21,7 +21,7 @@ export const SkipButton = ({
           outputRange: [0, 15],
         }),
       }],
-    }]}
+    }, {position:'absolute', left:0}]}
     >
       <TouchableOpacity
         style={styles.full}
