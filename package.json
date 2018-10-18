@@ -26,7 +26,8 @@
   },
   "bundleDependencies": false,
   "dependencies": {
-    "assign-deep": "^0.4.5"
+    "assign-deep": "^0.4.5",
+    "react-native-swiper": "git+https://github.com/shahid310khan/react-native-swiper.git"
   },
   "deprecated": false,
   "description": "react-native-app-intro is a react native plugin implementing a parallax effect welcome page using base on react-native-swiper , similar to the one found in Google's app like Sheet, Drive, Docs...",
